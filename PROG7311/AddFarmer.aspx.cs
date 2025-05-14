@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -21,10 +22,10 @@ namespace PROG7311
 
 		protected void Register()
 		{
-			string email = Request.Form["Email"];
-			string password = Request.Form["Password"];
-			string contactInfo = Request.Form["ContactInfo"];
-			string location = Request.Form["Location"];
+			string email = Email.Value;
+			string password = Password.Value; 
+			string contactInfo = ContactDetails.Value;
+			string location = Location.Value;
 			try
 			{
 				string connectionString = ConfigurationManager.ConnectionStrings["Prog7311Database"].ConnectionString;
@@ -48,6 +49,7 @@ namespace PROG7311
 			catch
 			{
 				clearStuff();
+				Email.Attributes.Add("placeholder", "Process Failed.");
 			}
 
 		}
@@ -63,10 +65,10 @@ namespace PROG7311
 
 		public void clearStuff()
 		{
-			Request.Form["Email"] = "";
-			Request.Form["Password"] = "";
-			Request.Form["ContactDetails"] = "";
-			Request.Form["Location"] = "";
+			Email.Value = "";
+			Password.Value = "";
+			ContactDetails.Value = "";
+			Location.Value = "";
 		}
 	}
 }
