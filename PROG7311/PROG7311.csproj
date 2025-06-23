@@ -307,9 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\StoredProcedures\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="EducationalContent\" />
-    <Folder Include="Forums\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
