@@ -18,7 +18,6 @@ namespace PROG7311
 		{
 			get
 			{
-				// Replace this with your actual condition checking logic
 				return ("Employee").Equals(Session["Role"]);
 			}
 		}

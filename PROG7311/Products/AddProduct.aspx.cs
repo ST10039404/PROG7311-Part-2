@@ -21,7 +21,7 @@ namespace PROG7311
 			}
 			else
 			{
-				resetInputs();
+				ResetInputs();
 			}
 		}
 
@@ -32,6 +32,7 @@ namespace PROG7311
 			DateTime productionDate = DateTime.Parse(ProductionDate.Text);
 			int productPrice = int.Parse(ProductPrice.Text);
 			byte[] productImageBytes = null;
+
 			if (ProductImage.HasFile)
 			{
 				using (var binaryReader = new BinaryReader(ProductImage.PostedFile.InputStream))
@@ -62,7 +63,7 @@ namespace PROG7311
 			Response.Redirect("~/Products/ProductListing.aspx");
 		}
 
-		protected void resetInputs()
+		protected void ResetInputs()
 		{
 			ProductName.Text = null;
 			Category.Text = null;

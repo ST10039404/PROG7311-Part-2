@@ -16,8 +16,9 @@ namespace PROG7311
 	{
 		protected void LoginButton_Click(object sender, EventArgs e)
 		{
-			bool succ = Login();
-			if (succ == true)
+			bool successfulLogin = Login();
+
+			if (successfulLogin == true)
 			{
 				Response.Redirect("~/Home.aspx", true);
 			}
@@ -30,9 +31,10 @@ namespace PROG7311
 
 		protected bool Login()
 		{
-			byte[] passwordHashDatabase = null;
-			string myRole = null;
+			byte[] passwordHashFromDatabase = null;
+			string loggedInUserRole = null;
 			string connectionString = ConfigurationManager.ConnectionStrings["Prog7311Database"].ConnectionString;
+
 			using (SqlConnection connection = new SqlConnection(connectionString))
 			{
 				string query = "SELECT UserEmail, PasswordHash, Role FROM Users WHERE UserEmail = @UserEmail";
@@ -46,8 +48,8 @@ namespace PROG7311
 					if (reader.HasRows)
 					{
 						reader.Read();
-						passwordHashDatabase = (byte[])reader["PasswordHash"];
-						myRole = (string)reader["Role"];
+						passwordHashFromDatabase = (byte[])reader["PasswordHash"];
+						loggedInUserRole = (string)reader["Role"];
 					}
 					else
 					{
@@ -57,10 +59,10 @@ namespace PROG7311
 				}
 			}
 
-			if (passwordHashDatabase.SequenceEqual(HashBytes(Request.Form["Password"])))
+			if (passwordHashFromDatabase.SequenceEqual(HashBytes(Request.Form["Password"])))
 			{
 				Session["UserEmail"] = Request.Form["Email"];
-				Session["Role"] = myRole;
+				Session["Role"] = loggedInUserRole;
 				return true;
 			}
 			else

@@ -26,6 +26,7 @@ namespace PROG7311
 			string password = Password.Value; 
 			string contactInfo = ContactDetails.Value;
 			string location = Location.Value;
+
 			try
 			{
 				string connectionString = ConfigurationManager.ConnectionStrings["Prog7311Database"].ConnectionString;
@@ -48,7 +49,7 @@ namespace PROG7311
 			}
 			catch
 			{
-				clearStuff();
+				ClearStuff();
 				Email.Attributes.Add("placeholder", "Process Failed.");
 			}
 
@@ -63,7 +64,7 @@ namespace PROG7311
 			return hash;
 		}
 
-		public void clearStuff()
+		public void ClearStuff()
 		{
 			Email.Value = "";
 			Password.Value = "";

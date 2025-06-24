@@ -15,49 +15,54 @@ namespace PROG7311
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			showMeMyProducts(sender, e);
+			ShowMeMyProducts(sender, e);
 		}
 
-		protected void update(List<Product> products)
+		protected void Update(List<Product> products)
 		{
 			pnlProducts.Controls.Clear();
-			loadProducts(products);
+			LoadProducts(products);
 		}
 
 		protected void SearchbarRun(object sender, EventArgs e)
 		{
 			var products = new List<Product>();
+
 			if (!SearchBar.Value.IsNullOrWhiteSpace())
 			{
 				products = GetProducts(SearchBar.Value);
-			} else
+			}
+			else
 			{
 				products = GetProductsAll();
 			}
-			update(products);
+
+			Update(products);
 		}
 
-		protected void showMeMyProducts(object sender,EventArgs e)
+		protected void ShowMeMyProducts(object sender,EventArgs e)
 		{
 			var products = GetProducts(Session["UserEmail"].ToString());
-			update(products);
+
+			Update(products);
 		}
 
-		protected void addANewProduct(object sender, EventArgs e)
+		protected void AddANewProduct(object sender, EventArgs e)
 		{
 			Response.Redirect("~/Products/AddProduct.aspx");
 		}
 
-		private List<Product> GetProducts(string UserEmail)
+		private List<Product> GetProducts(string userEmail)
 		{
 			List<Product> products = new List<Product>();
 			string connectionString = ConfigurationManager.ConnectionStrings["Prog7311Database"].ConnectionString;
+
 			using (SqlConnection connection = new SqlConnection(connectionString))
 			{
 				string query = "SELECT ProductName, Category, ProductionDate, ProductPrice, COALESCE(ProductImage,(SELECT TOP 1 DefaultImage FROM [DI])) AS ProductImage FROM [Products] WHERE FarmerEmail = @UserEmail";
 				using (SqlCommand command = new SqlCommand(query, connection))
 				{
-					command.Parameters.AddWithValue("@UserEmail", UserEmail);
+					command.Parameters.AddWithValue("@UserEmail", userEmail);
 
 					connection.Open();
 					using (SqlDataReader reader = command.ExecuteReader())
@@ -86,6 +91,7 @@ namespace PROG7311
 		{
 			List<Product> products = new List<Product>();
 			string connectionString = ConfigurationManager.ConnectionStrings["Prog7311Database"].ConnectionString;
+
 			using (SqlConnection connection = new SqlConnection(connectionString))
 			{
 				string query = "SELECT ProductName, Category, ProductionDate, ProductPrice, COALESCE(p.ProductImage, di.DefaultImage) AS ProductImage FROM Products AS p LEFT JOIN DI as di ON 1=1";
@@ -115,7 +121,7 @@ namespace PROG7311
 			return products;
 		}
 
-		private void loadProducts(List<Product> products)
+		private void LoadProducts(List<Product> products)
 		{
 			foreach (var product in products)
 			{
