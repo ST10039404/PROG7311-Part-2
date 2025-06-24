@@ -49,7 +49,7 @@ namespace PROG7311
 			}
 			catch
 			{
-				ClearStuff();
+				ResetInputs();
 				Email.Attributes.Add("placeholder", "Process Failed.");
 			}
 
@@ -64,7 +64,7 @@ namespace PROG7311
 			return hash;
 		}
 
-		public void ClearStuff()
+		public void ResetInputs()
 		{
 			Email.Value = "";
 			Password.Value = "";

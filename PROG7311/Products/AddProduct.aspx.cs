@@ -15,7 +15,7 @@ namespace PROG7311
 	{
 		protected void AddNewProductButton_Click(object sender, EventArgs e)
 		{
-			if (Page.IsValid)
+			if (Page.IsValid) //checks if inputs are valid
 			{
 				AddNewProduct();
 			}

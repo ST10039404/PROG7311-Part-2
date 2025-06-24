@@ -71,13 +71,19 @@ namespace PROG7311
 			}
 		}
 
-		public byte[] HashBytes(string cleartext)
+		protected byte[] HashBytes(string cleartext)
 		{
 			byte[] clearBytes = Encoding.UTF8.GetBytes(cleartext);
 			SHA256 hasher = SHA256.Create();
 			byte[] hash = hasher.ComputeHash(clearBytes);
 			hasher.Clear();
 			return hash;
+		}
+
+		protected void ResetInputs()
+		{
+			Email.Value = "";
+			Password.Value = "";
 		}
 	}
 }

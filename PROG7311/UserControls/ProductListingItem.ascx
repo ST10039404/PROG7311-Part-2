@@ -12,36 +12,49 @@
     <div class="imageSeperator">
         <asp:Image ID="Product_ImageDetails" runat="server" Height="42px" Width="42px" style="margin: 12px 13px 11px 13px"/>
     </div>
+
     <div class="seperator">
+            <%-- Label for Product Name --%>
         <div style="height:32px">
             <asp:Label ID="Product_Name" runat="server" Text="Product Name" class="label"/>
         </div>
+            <%-- Value for Product Name --%>
         <div style="height:33px">
             <asp:Label ID="Product_NameDetail" runat="server" Text="" class="label"/>
         </div>
     </div>
+
     <div class="seperator">
+            <%-- Label for Product Category --%>
         <div style="height:32px">
             <asp:Label ID="Product_Category" runat="server" Text="Category" class="label"/>
         </div>
+            <%-- Value for Product Category --%>
         <div style="height:33px">
             <asp:Label ID="Product_CategoryDetail" runat="server" Text="" class="label"/>
         </div>
     </div>
+
     <div class="seperator">
+            <%-- Label for Product Date --%>
         <div style="height:32px">
             <asp:Label ID="Product_Date" runat="server" Text="Date" class="label"/>
         </div>
+            <%-- Value for Product Date --%>
         <div style="height:33px">
             <asp:Label ID="Product_DateDetail" runat="server" Text="" class="label"/>
         </div>
     </div>
+
     <div class="seperator">
+            <%-- Label for Product Price --%>
         <div style="height:32px">
             <asp:Label ID="Product_Price" runat="server" Text="Pricing" class="label"/>
         </div>
+            <%-- Value for Product Price --%>
         <div style="height:33px">
             <asp:Label ID="Product_PriceDetail" runat="server" Text="" class="label"/>
         </div>
     </div>
+
 </div>
