@@ -12,7 +12,8 @@ namespace PROG7311
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+                 if (!IsPostBack)
+                          this.DataBind();
 		}
 
 		//Checks if user is an employee and returns a true or false value.
@@ -20,7 +21,8 @@ namespace PROG7311
 		{
 			get
 			{
-				return ("Employee").Equals(Session["Role"]);
+				var role = Session["Role"] as string;
+				return string.Equals(role, "Employee", StringComparison.OrdinalIgnoreCase);
 			}
 		}
 	}
