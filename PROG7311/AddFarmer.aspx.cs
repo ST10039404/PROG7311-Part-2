@@ -20,6 +20,7 @@ namespace PROG7311
 			Register();
 		}
 
+		//Inserts a new user, with their email as the primary key, into the database.
 		protected void Register()
 		{
 			string email = Email.Value;
@@ -50,11 +51,13 @@ namespace PROG7311
 			catch
 			{
 				ResetInputs();
+				//Only fails if either data was somehow invalid (perhaps an error in data entry) or if the user already exists and the database detects a duplicate primary key in the records.
 				Email.Attributes.Add("placeholder", "Process Failed.");
 			}
 
 		}
 
+		//Hashes a given string of cleartext or normal text.
 		public byte[] HashBytes(string cleartext)
 		{
 			byte[] clearBytes = Encoding.UTF8.GetBytes(cleartext);
@@ -64,6 +67,7 @@ namespace PROG7311
 			return hash;
 		}
 
+		//Sets inputs to empty.
 		public void ResetInputs()
 		{
 			Email.Value = "";

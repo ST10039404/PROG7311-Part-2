@@ -13,17 +13,20 @@ namespace PROG7311
 {
 	public partial class ProductListing : Page
 	{
+		//Automatically shows products for logged in user first
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			ShowMeMyProducts(sender, e);
+			ShowLoggedInUserProducts(sender, e);
 		}
 
-		protected void Update(List<Product> products)
+		//Clears and then loads products onto products panel
+		protected void UpdateProductsPanel(List<Product> products)
 		{
 			pnlProducts.Controls.Clear();
 			LoadProducts(products);
 		}
 
+		//Takes input from the search bar and runs GetProducts or GetProductsAll.
 		protected void SearchbarRun(object sender, EventArgs e)
 		{
 			var products = new List<Product>();
@@ -37,21 +40,24 @@ namespace PROG7311
 				products = GetProductsAll();
 			}
 
-			Update(products);
+			UpdateProductsPanel(products);
 		}
 
-		protected void ShowMeMyProducts(object sender,EventArgs e)
+		//Shows logged in user's products by using a session variable.
+		protected void ShowLoggedInUserProducts(object sender,EventArgs e)
 		{
 			var products = GetProducts(Session["UserEmail"].ToString());
 
-			Update(products);
+			UpdateProductsPanel(products);
 		}
 
+		//Switches to the add product page.
 		protected void AddANewProduct(object sender, EventArgs e)
 		{
 			Response.Redirect("~/Products/AddProduct.aspx");
 		}
 
+		//Gets products for an entered email.
 		private List<Product> GetProducts(string userEmail)
 		{
 			List<Product> products = new List<Product>();
@@ -87,6 +93,7 @@ namespace PROG7311
 			return products;
 		}
 
+		//Gets all products available on the database.
 		private List<Product> GetProductsAll()
 		{
 			List<Product> products = new List<Product>();
@@ -121,6 +128,7 @@ namespace PROG7311
 			return products;
 		}
 
+		//Assigns products from a given list of products to a list item.
 		private void LoadProducts(List<Product> products)
 		{
 			foreach (var product in products)

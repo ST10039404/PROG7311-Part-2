@@ -13,9 +13,10 @@ namespace PROG7311
 {
 	public partial class AddProduct : Page
 	{
+		//Selects whether to add product if valid or to reset inputs if invalid.
 		protected void AddNewProductButton_Click(object sender, EventArgs e)
 		{
-			if (Page.IsValid) //checks if inputs are valid
+			if (Page.IsValid) //Checks if inputs are valid.
 			{
 				AddNewProduct();
 			}
@@ -25,6 +26,7 @@ namespace PROG7311
 			}
 		}
 
+		//Runs INSERT Sql Command using valid parameters from the input form.
 		protected void AddNewProduct()
 		{
 			string productName = ProductName.Text;
@@ -59,10 +61,11 @@ namespace PROG7311
 					connection.Close();
 				}
 			}
-
+			//Redirects back to list of products so that user instantly sees the product they entered be reflected.
 			Response.Redirect("~/Products/ProductListing.aspx");
 		}
 
+		//Sets input fields to empty.
 		protected void ResetInputs()
 		{
 			ProductName.Text = null;

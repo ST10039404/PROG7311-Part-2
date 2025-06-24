@@ -14,6 +14,7 @@ namespace PROG7311
 {
 	public partial class _Default : Page
 	{
+		//Authenticates user if valid then sends them to the home page.
 		protected void LoginButton_Click(object sender, EventArgs e)
 		{
 			bool successfulLogin = Login();
@@ -29,6 +30,7 @@ namespace PROG7311
 
 		}
 
+		//Returns true if email and password is valid or false if anything else.
 		protected bool Login()
 		{
 			byte[] passwordHashFromDatabase = null;
@@ -59,6 +61,7 @@ namespace PROG7311
 				}
 			}
 
+			//Checks if the hash on the database is equal to the hashed version of the entered password.
 			if (passwordHashFromDatabase.SequenceEqual(HashBytes(Request.Form["Password"])))
 			{
 				Session["UserEmail"] = Request.Form["Email"];
@@ -71,6 +74,7 @@ namespace PROG7311
 			}
 		}
 
+		//Hashes a given string of cleartext or normal text.
 		protected byte[] HashBytes(string cleartext)
 		{
 			byte[] clearBytes = Encoding.UTF8.GetBytes(cleartext);
@@ -80,6 +84,7 @@ namespace PROG7311
 			return hash;
 		}
 
+		//Sets inputs to empty.
 		protected void ResetInputs()
 		{
 			Email.Value = "";

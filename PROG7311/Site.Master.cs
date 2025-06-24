@@ -14,6 +14,8 @@ namespace PROG7311
 		{
 
 		}
+
+		//Checks if user is an employee and returns a true or false value.
 		public bool IsUserEmployee
 		{
 			get

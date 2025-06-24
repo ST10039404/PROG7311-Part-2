@@ -30,15 +30,18 @@ namespace PROG7311.UserControls
 			get { return Product_PriceDetail.Text;  }
 			set { Product_CategoryDetail.Text = value.ToString(); }
 		}
+
+		//Produces product image unless null, in which case a default image is used.
 		public byte[] ProductImage
 		{
 			set
 			{
-				if (value != null)
+				if (value != null) //Checks for non-null
 				{
 					string base64String = Convert.ToBase64String(value, 0, value.Length);
 					Product_ImageDetails.ImageUrl = "data:image/png;base64," + base64String;
 				}
+			//Cancels and return that the productimage is null, which will be replaced by a default image in the database.
 			}
 		} 
 	}

@@ -4,11 +4,15 @@
 
     <main>
         <div style="width:95%; margin:auto;">
+            
+            <%-- Label saying 'Product List' --%>
             <div>
                 <asp:Label runat="server" Text="Product List: " style="margin:50px;" Font-Size="24px"/>
                 <br />
                 <br />
             </div>
+
+            <%-- Search Bar functions with buttons assigned to functions --%>
             <div style="width:95%; margin:auto;">
                 <textbox style="width:100%; height:100%; ">Search Bar:</textbox>
                 <input id="SearchBar" name="SearchBar" runat="server" placeholder="farmer email" style="margin-left:30px;"/>
@@ -17,10 +21,13 @@
                 <asp:Button ID="addProduct" runat="server" Text="New Product" CssClass="btn btn-primary" OnClick="addANewProduct" />
             </div>
             <br />
+
+            <%-- Panel for the products --%>
             <div style="width:95%; margin:auto;">
-                
                 <asp:Panel ID="pnlProducts" runat="server"></asp:Panel>
             </div>
+
+
             <div>
 
             </div>
